@@ -215,11 +215,11 @@
     }
     .about-sig { display: flex; align-items: center; gap: 14px; margin-top: 28px; }
     .about-sig-avatar {
-      width: 48px; height: 48px; border-radius: 12px;
+      width: 52px; height: 52px; border-radius: 50%;
       overflow: hidden; flex-shrink: 0;
-      background: transparent;
+      border: 2px solid #e8e8e8;
     }
-    .about-sig-avatar img { width: 100%; height: 100%; display: block; object-fit: contain; }
+    .about-sig-avatar img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 20%; }
     .about-sig-name { font-weight: 700; font-size: 15px; }
     .about-sig-role { font-size: 13px; color: var(--muted); }
     .about-phone { display: flex; justify-content: center; }
@@ -448,7 +448,7 @@
         <p>I wanted one place to keep every vet visit, treatment schedule and expense without juggling notes, spreadsheets or half-remembered dates.</p>
         <p>As pet owners, we can always do better — because they give us their whole heart, and they deserve nothing less in return. 🐾💛</p>
         <div class="about-sig">
-          <div class="about-sig-avatar"><img src="screenshots/Pawfolio_App_Icon.png" alt="Pawfolio" /></div>
+          <div class="about-sig-avatar"><img src="screenshots/flappy.jpg" alt="Flappy" /></div>
           <div>
             <div class="about-sig-name">Audrey Lee</div>
             <div class="about-sig-role">Pawfolio Developer</div>
