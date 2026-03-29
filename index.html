@@ -118,7 +118,7 @@
     .section { padding: 96px 48px; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
 
-    /* ── FEATURE SHOWCASE (Luna-style: heading + 3-col screenshot cards) ── */
+    /* ── SHOWCASE ── */
     .showcase-heading {
       font-size: clamp(36px, 4.5vw, 60px);
       font-weight: 900; letter-spacing: -0.04em;
@@ -154,7 +154,18 @@
       box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
     }
 
-    /* ── SIMPLE FEATURE LIST ── */
+    /* Emergency card — red tint */
+    .screenshot-card.emergency {
+      background: #fff1f1;
+    }
+    .screenshot-card.emergency .screenshot-card-label {
+      color: #c0392b;
+    }
+    .screenshot-card.emergency .screenshot-card-title {
+      color: #8b0000;
+    }
+
+    /* ── FEATURE LIST ── */
     .features-section { background: var(--bg-soft); }
     .features-grid {
       display: grid;
@@ -164,7 +175,6 @@
     .feat {
       background: #fff;
       padding: 28px 24px;
-      border-radius: 0;
     }
     .feat:first-child { border-radius: 16px 0 0 16px; }
     .feat:last-child  { border-radius: 0 16px 16px 0; }
@@ -172,7 +182,7 @@
     .feat-name { font-size: 14px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
     .feat-desc { font-size: 13px; color: #666; line-height: 1.5; }
 
-    /* ── SECOND SCREENSHOT ROW ── */
+    /* ── TWO COL ── */
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -180,7 +190,15 @@
     }
     .two-col .screenshot-card img { border-radius: 14px 14px 0 0; }
 
-    /* ── ABOUT / FOUNDER ── */
+    /* ── THREE COL ── */
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .three-col .screenshot-card img { border-radius: 14px 14px 0 0; }
+
+    /* ── ABOUT ── */
     .about-section { border-top: 1px solid var(--border); }
     .about-inner {
       display: grid; grid-template-columns: 1fr 1fr;
@@ -203,9 +221,7 @@
     }
     .about-sig-name { font-weight: 700; font-size: 15px; }
     .about-sig-role { font-size: 13px; color: var(--muted); }
-    .about-phone {
-      display: flex; justify-content: center;
-    }
+    .about-phone { display: flex; justify-content: center; }
     .about-phone img {
       width: 260px; border-radius: 40px;
       box-shadow: 0 32px 80px rgba(0,0,0,0.13);
@@ -227,17 +243,13 @@
     .p-card.pro { background: var(--green); border-color: var(--green); color: #fff; }
     .p-tier { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
     .p-card.pro .p-tier { color: rgba(255,255,255,.55); }
-    .p-price {
-      font-size: 44px; font-weight: 900;
-      letter-spacing: -0.04em; line-height: 1;
-      margin-bottom: 4px;
-    }
+    .p-price { font-size: 44px; font-weight: 900; letter-spacing: -0.04em; line-height: 1; margin-bottom: 4px; }
     .p-per { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
     .p-card.pro .p-per { color: rgba(255,255,255,.6); }
     .p-note { font-size: 13px; color: #777; }
     .p-card.pro .p-note { color: rgba(255,255,255,.7); }
 
-    /* ── FOOTER CTA ── */
+    /* ── CTA BAND ── */
     .cta-band {
       background: var(--green); padding: 80px 48px;
       text-align: center;
@@ -281,6 +293,7 @@
       .section { padding: 64px 24px; }
       .screenshot-grid { grid-template-columns: 1fr; }
       .two-col { grid-template-columns: 1fr; }
+      .three-col { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr 1fr; }
       .feat:first-child { border-radius: 16px 0 0 0; }
       .feat:last-child  { border-radius: 0 0 16px 0; }
@@ -388,7 +401,9 @@
   <div class="section-inner">
     <h2 class="showcase-heading">Simple, but powerful ⚡️</h2>
     <p class="showcase-sub">Almost everything can be customised to be as simple or detailed as you need.</p>
-    <div class="two-col">
+
+    <!-- Row: Reminders + Vaccines + Emergency -->
+    <div class="three-col">
       <div class="screenshot-card">
         <div class="screenshot-card-label">Reminders</div>
         <div class="screenshot-card-title">Fully customised reminders</div>
@@ -399,7 +414,14 @@
         <div class="screenshot-card-title">Never miss a jab</div>
         <img src="screenshots/vet-vaccines.png" alt="Vaccines screen" />
       </div>
+      <div class="screenshot-card emergency">
+        <div class="screenshot-card-label">Emergency Vet</div>
+        <div class="screenshot-card-title">One tap to call in a crisis</div>
+        <img src="screenshots/emergency.png" alt="Emergency vet screen" />
+      </div>
     </div>
+
+    <!-- Row: Grooming + Insurance -->
     <div class="two-col" style="margin-top:24px;">
       <div class="screenshot-card">
         <div class="screenshot-card-label">Grooming</div>
