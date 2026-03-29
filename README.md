@@ -2,7 +2,7 @@
 
 Marketing landing page for **Pawfolio**, a pet health & expense tracker for iOS.
 
-Live site: [audrey06lee05.github.io/pawfolio-landing](https://audrey06lee05.github.io/pawfolio-landing)
+Live site: [audrey06lee05.github.io/pawfolio](https://audrey06lee05.github.io/pawfolio)
 
 ---
 
