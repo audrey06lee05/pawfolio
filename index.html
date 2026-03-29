@@ -1,1 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pawfolio — Pet Health & Expense Tracker</title>
+  <meta name="description" content="Everything about your pet, in one place. Track health, treatments, vet visits, expenses and more." />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:   #2f412e;
+      --green2:  #3d5c3b;
+      --text:    #111;
+      --muted:   #888;
+      --border:  #e8e8e8;
+      --bg:      #fff;
+      --bg-soft: #f7f7f5;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 60px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none; color: var(--text);
+      font-size: 15px; font-weight: 700; letter-spacing: -0.02em;
+    }
+    .nav-logo-icon {
+      width: 28px; height: 28px; background: var(--green);
+      border-radius: 7px; display: flex; align-items: center;
+      justify-content: center; font-size: 14px;
+    }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: #555;
+      text-decoration: none; transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--green); color: #fff;
+      text-decoration: none; padding: 8px 18px;
+      border-radius: 100px; font-size: 14px; font-weight: 600;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--green2); transform: translateY(-1px); }
+    .nav-cta svg { width: 14px; height: 14px; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      padding: 80px 48px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .hero-text { padding-right: 40px; }
+    .hero h1 {
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-size: 18px; font-weight: 400;
+      color: #555; line-height: 1.55;
+      max-width: 380px; margin-bottom: 36px;
+    }
+    .hero-btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--green); color: #fff;
+      text-decoration: none; padding: 14px 26px;
+      border-radius: 100px; font-size: 15px; font-weight: 600;
+      transition: background .2s, transform .15s;
+      margin-bottom: 12px;
+    }
+    .hero-btn:hover { background: var(--green2); transform: translateY(-2px); }
+    .hero-btn svg { width: 18px; height: 18px; }
+    .hero-note { font-size: 13px; color: var(--muted); display: block; }
+
+    .hero-phone {
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-phone img {
+      width: 300px;
+      border-radius: 44px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.14), 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section { padding: 96px 48px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    /* ── FEATURE SHOWCASE (Luna-style: heading + 3-col screenshot cards) ── */
+    .showcase-heading {
+      font-size: clamp(36px, 4.5vw, 60px);
+      font-weight: 900; letter-spacing: -0.04em;
+      line-height: 1.05; margin-bottom: 10px;
+    }
+    .showcase-sub {
+      font-size: 17px; color: #555; margin-bottom: 56px;
+    }
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .screenshot-card {
+      background: var(--bg-soft);
+      border-radius: 24px;
+      overflow: hidden;
+      padding: 28px 20px 0;
+    }
+    .screenshot-card-label {
+      font-size: 13px; font-weight: 600;
+      color: var(--muted); letter-spacing: 0.04em;
+      text-transform: uppercase; margin-bottom: 16px;
+    }
+    .screenshot-card-title {
+      font-size: 20px; font-weight: 800;
+      letter-spacing: -0.03em; color: var(--text);
+      margin-bottom: 20px;
+    }
+    .screenshot-card img {
+      width: 100%; border-radius: 18px 18px 0 0;
+      display: block;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
+    }
+
+    /* ── SIMPLE FEATURE LIST ── */
+    .features-section { background: var(--bg-soft); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    .feat {
+      background: #fff;
+      padding: 28px 24px;
+      border-radius: 0;
+    }
+    .feat:first-child { border-radius: 16px 0 0 16px; }
+    .feat:last-child  { border-radius: 0 16px 16px 0; }
+    .feat-icon { font-size: 22px; margin-bottom: 10px; }
+    .feat-name { font-size: 14px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .feat-desc { font-size: 13px; color: #666; line-height: 1.5; }
+
+    /* ── SECOND SCREENSHOT ROW ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .two-col .screenshot-card img { border-radius: 14px 14px 0 0; }
+
+    /* ── ABOUT / FOUNDER ── */
+    .about-section { border-top: 1px solid var(--border); }
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start;
+    }
+    .about-text h2 {
+      font-size: clamp(32px, 3.5vw, 52px);
+      font-weight: 900; letter-spacing: -0.04em;
+      line-height: 1.05; margin-bottom: 24px;
+    }
+    .about-text p {
+      font-size: 16px; color: #555; line-height: 1.7; margin-bottom: 16px;
+    }
+    .about-sig { display: flex; align-items: center; gap: 14px; margin-top: 28px; }
+    .about-sig-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .about-sig-name { font-weight: 700; font-size: 15px; }
+    .about-sig-role { font-size: 13px; color: var(--muted); }
+    .about-phone {
+      display: flex; justify-content: center;
+    }
+    .about-phone img {
+      width: 260px; border-radius: 40px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.13);
+    }
+
+    /* ── PRICING ── */
+    .pricing-section { border-top: 1px solid var(--border); }
+    .pricing-heading {
+      font-size: clamp(32px, 3.5vw, 52px);
+      font-weight: 900; letter-spacing: -0.04em;
+      line-height: 1.05; margin-bottom: 10px;
+    }
+    .pricing-sub { font-size: 17px; color: #555; margin-bottom: 48px; }
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 480px; }
+    .p-card {
+      border: 1.5px solid var(--border); border-radius: 20px;
+      padding: 28px 24px;
+    }
+    .p-card.pro { background: var(--green); border-color: var(--green); color: #fff; }
+    .p-tier { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .p-card.pro .p-tier { color: rgba(255,255,255,.55); }
+    .p-price {
+      font-size: 44px; font-weight: 900;
+      letter-spacing: -0.04em; line-height: 1;
+      margin-bottom: 4px;
+    }
+    .p-per { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+    .p-card.pro .p-per { color: rgba(255,255,255,.6); }
+    .p-note { font-size: 13px; color: #777; }
+    .p-card.pro .p-note { color: rgba(255,255,255,.7); }
+
+    /* ── FOOTER CTA ── */
+    .cta-band {
+      background: var(--green); padding: 80px 48px;
+      text-align: center;
+    }
+    .cta-band h2 {
+      font-size: clamp(32px, 4.5vw, 60px);
+      font-weight: 900; letter-spacing: -0.04em;
+      color: #fff; margin-bottom: 12px; line-height: 1.05;
+    }
+    .cta-band p { font-size: 17px; color: rgba(255,255,255,.6); margin-bottom: 32px; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: #fff; color: var(--green);
+      text-decoration: none; padding: 14px 28px;
+      border-radius: 100px; font-size: 15px; font-weight: 700;
+      transition: opacity .2s, transform .15s;
+    }
+    .cta-btn:hover { opacity: .92; transform: translateY(-2px); }
+    .cta-btn svg { width: 18px; height: 18px; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between;
+      align-items: flex-start; flex-wrap: wrap; gap: 32px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 8px; }
+    .footer-copy { font-size: 13px; color: var(--muted); }
+    .footer-col h4 { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .footer-col a { display: block; font-size: 14px; color: #555; text-decoration: none; margin-bottom: 8px; transition: color .15s; }
+    .footer-col a:hover { color: var(--text); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 100px 24px 48px; min-height: auto; gap: 48px; }
+      .hero-text { padding-right: 0; }
+      .hero-phone img { width: 260px; }
+      .section { padding: 64px 24px; }
+      .screenshot-grid { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .feat:first-child { border-radius: 16px 0 0 0; }
+      .feat:last-child  { border-radius: 0 0 16px 0; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .about-phone { order: -1; }
+      .about-phone img { width: 220px; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
+      .cta-band { padding: 60px 24px; }
+      footer { padding: 40px 24px; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🐾</div>
+    Pawfolio
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#about">About</a>
+  </div>
+  <a href="https://apps.apple.com/app/id0000000000" class="nav-cta" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+    Download Pawfolio
+  </a>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:1200px;margin:0 auto;">
+  <div class="hero">
+    <div class="hero-text">
+      <h1>A pet health app you'll love using</h1>
+      <p class="hero-sub">A simple and beautiful app designed to keep everything about your pet in one place.</p>
+      <a href="https://apps.apple.com/app/id0000000000" class="hero-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on iOS
+      </a>
+      <span class="hero-note">Free to download · 7-day Pro trial</span>
+    </div>
+    <div class="hero-phone">
+      <img src="screenshots/home.png" alt="Pawfolio home screen" />
+    </div>
+  </div>
+</div>
+
+<!-- SHOWCASE ROW 1 -->
+<div class="section" id="features">
+  <div class="section-inner">
+    <h2 class="showcase-heading">The basics, but better ✨</h2>
+    <p class="showcase-sub">Built so you'll want to open it every time your pet needs care.</p>
+    <div class="screenshot-grid">
+      <div class="screenshot-card">
+        <div class="screenshot-card-label">Vet &amp; Vaccines</div>
+        <div class="screenshot-card-title">Your vet, one tap away</div>
+        <img src="screenshots/vet-visits.png" alt="Vet visits screen" />
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-card-label">Money Tracker</div>
+        <div class="screenshot-card-title">Track every penny spent</div>
+        <img src="screenshots/money2.png" alt="Money tracker screen" />
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-card-label">Measurements</div>
+        <div class="screenshot-card-title">Watch your pet grow</div>
+        <img src="screenshots/measurements-weight.png" alt="Measurements screen" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURE LIST -->
+<div class="section features-section" style="padding-top:0;padding-bottom:0;">
+  <div class="section-inner" style="padding:48px 0;">
+    <div class="features-grid">
+      <div class="feat">
+        <div class="feat-icon">🐛</div>
+        <div class="feat-name">Treatments</div>
+        <div class="feat-desc">Flea, tick &amp; worm schedules with push reminders.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">✂️</div>
+        <div class="feat-name">Grooming</div>
+        <div class="feat-desc">Track appointments, get notified when it's time to book.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🛡️</div>
+        <div class="feat-name">Insurance</div>
+        <div class="feat-desc">Store policies, get renewal alerts, one-tap contact.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🐾</div>
+        <div class="feat-name">Multiple Pets</div>
+        <div class="feat-desc">One app for your whole family of pets.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOWCASE ROW 2 -->
+<div class="section" style="padding-top:80px;">
+  <div class="section-inner">
+    <h2 class="showcase-heading">Simple, but powerful 😤</h2>
+    <p class="showcase-sub">Almost everything can be customised to be as simple or detailed as you need.</p>
+    <div class="two-col">
+      <div class="screenshot-card">
+        <div class="screenshot-card-label">Reminders</div>
+        <div class="screenshot-card-title">Fully customised reminders</div>
+        <img src="screenshots/reminders.png" alt="Reminders screen" />
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-card-label">Vaccine Records</div>
+        <div class="screenshot-card-title">Never miss a jab</div>
+        <img src="screenshots/vet-vaccines.png" alt="Vaccines screen" />
+      </div>
+    </div>
+    <div class="two-col" style="margin-top:24px;">
+      <div class="screenshot-card">
+        <div class="screenshot-card-label">Grooming</div>
+        <div class="screenshot-card-title">Tracked and on schedule</div>
+        <img src="screenshots/grooming.png" alt="Grooming screen" />
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-card-label">Insurance</div>
+        <div class="screenshot-card-title">Always ready</div>
+        <img src="screenshots/insurance.png" alt="Insurance screen" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section about-section" id="about">
+  <div class="section-inner">
+    <div class="about-inner">
+      <div class="about-text">
+        <h2>Hi, I'm Audrey 👋</h2>
+        <p>I built Pawfolio because of <strong>Flappy</strong> — my Miniature Schnauzer who inspired every feature in this app.</p>
+        <p>I wanted one place to keep every vet visit, treatment schedule and expense without juggling notes, spreadsheets or half-remembered dates.</p>
+        <p>As pet owners, we can always do better — because they give us their whole heart, and they deserve nothing less in return. 🐾💛</p>
+        <div class="about-sig">
+          <div class="about-sig-avatar">👩‍💻</div>
+          <div>
+            <div class="about-sig-name">Audrey Lee</div>
+            <div class="about-sig-role">Pawfolio Developer</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-phone">
+        <img src="screenshots/pet-profile.png" alt="Pet profile screen" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="section pricing-section" id="pricing">
+  <div class="section-inner">
+    <h2 class="pricing-heading">Simple pricing</h2>
+    <p class="pricing-sub">Free to start. Pro when you're ready.</p>
+    <div class="pricing-grid">
+      <div class="p-card">
+        <div class="p-tier">Free</div>
+        <div class="p-price">£0</div>
+        <div class="p-per">forever</div>
+        <div class="p-note">Home, Measurements &amp; 1 pet</div>
+      </div>
+      <div class="p-card pro">
+        <div class="p-tier">Pro</div>
+        <div class="p-price">£2.39</div>
+        <div class="p-per">per month</div>
+        <div class="p-note">7-day free trial · £25/yr option</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Give your pet the<br/>care they deserve</h2>
+  <p>Free to download. 7-day Pro trial included.</p>
+  <a href="https://apps.apple.com/app/id0000000000" class="cta-btn" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+    Download on the App Store
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="#" class="nav-logo" style="text-decoration:none;">
+      <div class="nav-logo-icon">🐾</div>
+      Pawfolio
+    </a>
+    <p class="footer-copy" style="margin-top:4px;">© 2026 Pawfolio. All rights reserved.</p>
+  </div>
+  <div class="footer-col">
+    <h4>App</h4>
+    <a href="https://apps.apple.com/app/id0000000000" target="_blank" rel="noopener">iOS App</a>
+    <a href="mailto:support@pawfolio.app">Support</a>
+  </div>
+  <div class="footer-col">
+    <h4>Legal</h4>
+    <a href="https://audrey06lee05.github.io/pawfolio-private-policy" target="_blank" rel="noopener">Privacy Policy</a>
+  </div>
+</footer>
+
+</body>
+</html>
