@@ -156,15 +156,9 @@
     }
 
     /* Emergency card — red tint */
-    .screenshot-card.emergency {
-      background: #fff1f1;
-    }
-    .screenshot-card.emergency .screenshot-card-label {
-      color: #c0392b;
-    }
-    .screenshot-card.emergency .screenshot-card-title {
-      color: #8b0000;
-    }
+    .screenshot-card.emergency { background: #fff1f1; }
+    .screenshot-card.emergency .screenshot-card-label { color: #c0392b; }
+    .screenshot-card.emergency .screenshot-card-title { color: #8b0000; }
 
     /* ── FEATURE LIST ── */
     .features-section { background: var(--bg-soft); }
@@ -173,10 +167,7 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 2px;
     }
-    .feat {
-      background: #fff;
-      padding: 28px 24px;
-    }
+    .feat { background: #fff; padding: 28px 24px; }
     .feat:first-child { border-radius: 16px 0 0 16px; }
     .feat:last-child  { border-radius: 0 16px 16px 0; }
     .feat-icon { font-size: 22px; margin-bottom: 10px; }
@@ -184,44 +175,33 @@
     .feat-desc { font-size: 13px; color: #666; line-height: 1.5; }
 
     /* ── TWO COL ── */
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     .two-col .screenshot-card img { border-radius: 14px 14px 0 0; }
 
     /* ── THREE COL ── */
-    .three-col {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
+    .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .three-col .screenshot-card img { border-radius: 14px 14px 0 0; }
 
     /* ── ABOUT ── */
     .about-section { border-top: 1px solid var(--border); }
     .about-inner {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: start;
+      gap: 80px; align-items: center;
     }
     .about-text h2 {
       font-size: clamp(32px, 3.5vw, 52px);
       font-weight: 900; letter-spacing: -0.04em;
       line-height: 1.05; margin-bottom: 24px;
     }
-    .about-text p {
-      font-size: 16px; color: #555; line-height: 1.7; margin-bottom: 16px;
-    }
+    .about-text p { font-size: 16px; color: #555; line-height: 1.7; margin-bottom: 16px; }
     .about-sig { display: flex; align-items: center; gap: 14px; margin-top: 28px; }
-    .about-sig-avatar {
-      width: 52px; height: 52px; border-radius: 12px;
-      overflow: hidden; flex-shrink: 0;
-    }
+    .about-sig-avatar { width: 52px; height: 52px; border-radius: 12px; overflow: hidden; flex-shrink: 0; }
     .about-sig-avatar img { width: 100%; height: 100%; display: block; object-fit: cover; }
     .about-sig-name { font-weight: 700; font-size: 15px; }
     .about-sig-role { font-size: 13px; color: var(--muted); }
-    .about-phone { display: flex; justify-content: center; align-items: flex-start; }
+
+    /* Flappy circle — desktop */
+    .about-phone { display: flex; justify-content: center; align-items: center; }
     .about-phone img {
       width: 320px; height: 320px;
       border-radius: 50%;
@@ -240,10 +220,7 @@
     }
     .pricing-sub { font-size: 17px; color: #555; margin-bottom: 48px; }
     .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 480px; }
-    .p-card {
-      border: 1.5px solid var(--border); border-radius: 20px;
-      padding: 28px 24px;
-    }
+    .p-card { border: 1.5px solid var(--border); border-radius: 20px; padding: 28px 24px; }
     .p-card.pro { background: var(--green); border-color: var(--green); color: #fff; }
     .p-tier { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
     .p-card.pro .p-tier { color: rgba(255,255,255,.55); }
@@ -254,10 +231,7 @@
     .p-card.pro .p-note { color: rgba(255,255,255,.7); }
 
     /* ── CTA BAND ── */
-    .cta-band {
-      background: var(--green); padding: 80px 48px;
-      text-align: center;
-    }
+    .cta-band { background: var(--green); padding: 80px 48px; text-align: center; }
     .cta-band h2 {
       font-size: clamp(32px, 4.5vw, 60px);
       font-weight: 900; letter-spacing: -0.04em;
@@ -303,7 +277,19 @@
       .feat:last-child  { border-radius: 0 0 16px 0; }
       .about-inner { grid-template-columns: 1fr; gap: 40px; }
       .about-phone { order: -1; }
-      .about-phone img { width: 220px; }
+      /* KEY FIX: fixed size + overflow hidden on parent keeps circle on mobile */
+      .about-phone {
+        width: 260px; height: 260px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+      }
+      .about-phone img {
+        width: 100%; height: 100%;
+        transform: scale(1.4);
+        border-radius: 0;
+        box-shadow: none;
+      }
       .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
       .cta-band { padding: 60px 24px; }
       footer { padding: 40px 24px; flex-direction: column; }
@@ -406,7 +392,6 @@
     <h2 class="showcase-heading">Simple, but powerful ⚡️</h2>
     <p class="showcase-sub">Almost everything can be customised to be as simple or detailed as you need.</p>
 
-    <!-- Row: Reminders + Vaccines + Emergency -->
     <div class="three-col">
       <div class="screenshot-card">
         <div class="screenshot-card-label">Reminders</div>
@@ -425,7 +410,6 @@
       </div>
     </div>
 
-    <!-- Row: Grooming + Insurance -->
     <div class="two-col" style="margin-top:24px;">
       <div class="screenshot-card">
         <div class="screenshot-card-label">Grooming</div>
@@ -510,8 +494,13 @@
   <div class="footer-col">
     <h4>App</h4>
     <a href="https://apps.apple.com/app/id0000000000" target="_blank" rel="noopener">iOS App</a>
-    <a href="/cdn-cgi/l/email-protection#6d1e181d1d021f192d1d0c1a0b02010402430c1d1d">Support</a>
+    <a href="mailto:support@pawfolio.app">Support</a>
   </div>
   <div class="footer-col">
     <h4>Legal</h4>
-    <a href="https://audrey06lee05.github.io/pawfolio-private-policy" target="_blank" rel="noopener">Privacy Poli
+    <a href="https://audrey06lee05.github.io/pawfolio-private-policy" target="_blank" rel="noopener">Privacy Policy</a>
+  </div>
+</footer>
+
+</body>
+</html>
