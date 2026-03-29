@@ -48,10 +48,10 @@
       font-size: 15px; font-weight: 700; letter-spacing: -0.02em;
     }
     .nav-logo-icon {
-      width: 28px; height: 28px; background: var(--green);
-      border-radius: 7px; display: flex; align-items: center;
-      justify-content: center; font-size: 14px;
+      width: 28px; height: 28px;
+      border-radius: 7px; overflow: hidden; flex-shrink: 0;
     }
+    .nav-logo-icon img { width: 100%; height: 100%; display: block; object-fit: cover; }
     .nav-links { display: flex; gap: 32px; }
     .nav-links a {
       font-size: 14px; font-weight: 500; color: #555;
@@ -215,10 +215,9 @@
     .about-sig { display: flex; align-items: center; gap: 14px; margin-top: 28px; }
     .about-sig-avatar {
       width: 48px; height: 48px; border-radius: 50%;
-      background: var(--green);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; flex-shrink: 0;
+      overflow: hidden; flex-shrink: 0;
     }
+    .about-sig-avatar img { width: 100%; height: 100%; display: block; object-fit: cover; }
     .about-sig-name { font-weight: 700; font-size: 15px; }
     .about-sig-role { font-size: 13px; color: var(--muted); }
     .about-phone { display: flex; justify-content: center; }
@@ -311,7 +310,7 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <div class="nav-logo-icon">🐾</div>
+    <div class="nav-logo-icon"><img src="screenshots/app-icon.png" alt="Pawfolio" /></div>
     Pawfolio
   </a>
   <div class="nav-links">
@@ -447,7 +446,7 @@
         <p>I wanted one place to keep every vet visit, treatment schedule and expense without juggling notes, spreadsheets or half-remembered dates.</p>
         <p>As pet owners, we can always do better — because they give us their whole heart, and they deserve nothing less in return. 🐾💛</p>
         <div class="about-sig">
-          <div class="about-sig-avatar">🧑🏻‍💻</div>
+          <div class="about-sig-avatar"><img src="screenshots/app-icon.png" alt="Pawfolio" /></div>
           <div>
             <div class="about-sig-name">Audrey Lee</div>
             <div class="about-sig-role">Pawfolio Developer</div>
@@ -497,7 +496,7 @@
 <footer>
   <div class="footer-brand">
     <a href="#" class="nav-logo" style="text-decoration:none;">
-      <div class="nav-logo-icon">🐾</div>
+      <div class="nav-logo-icon"><img src="screenshots/app-icon.png" alt="Pawfolio" /></div>
       Pawfolio
     </a>
     <p class="footer-copy" style="margin-top:4px;">© 2026 Audrey Lee. All rights reserved.</p>
@@ -505,13 +504,8 @@
   <div class="footer-col">
     <h4>App</h4>
     <a href="https://apps.apple.com/app/id0000000000" target="_blank" rel="noopener">iOS App</a>
-    <a href="mailto:support@pawfolio.app">Support</a>
+    <a href="/cdn-cgi/l/email-protection#6d1e181d1d021f192d1d0c1a0b02010402430c1d1d">Support</a>
   </div>
   <div class="footer-col">
     <h4>Legal</h4>
-    <a href="https://audrey06lee05.github.io/pawfolio-private-policy" target="_blank" rel="noopener">Privacy Policy</a>
-  </div>
-</footer>
-
-</body>
-</html>
+    <a href="https://audrey06lee05.github.io/pawfolio-private-policy" target="_blank" rel="noopener">Privacy Poli
