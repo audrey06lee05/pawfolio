@@ -263,12 +263,12 @@
 
     /* ── RESPONSIVE ── */
     @media(max-width: 768px) {
-      nav { padding: 0 16px; gap: 8px; }
-      .nav-links { display: flex; gap: 16px; }
-      .nav-links a { font-size: 13px; }
-      .nav-cta { padding: 7px 12px; font-size: 13px; }
-      .nav-logo-icon { width: 28px; height: 28px; }
-      .nav-logo { font-size: 13px; }
+      nav { flex-wrap: wrap; height: auto; padding: 12px 20px 0; row-gap: 0; }
+      .nav-logo { width: 100%; padding-bottom: 10px; }
+      .nav-cta { margin-left: auto; position: absolute; top: 12px; right: 20px; padding: 7px 14px; font-size: 13px; }
+      .nav-links { width: 100%; display: flex; justify-content: center; gap: 32px; border-top: 1px solid var(--border); padding: 10px 0; }
+      .nav-links a { font-size: 14px; }
+      .hero { padding-top: 120px; }
       .hero { grid-template-columns: 1fr; padding: 100px 24px 48px; min-height: auto; gap: 48px; }
       .hero-text { padding-right: 0; }
       .hero-phone img { width: 260px; }
