@@ -263,8 +263,12 @@
 
     /* ── RESPONSIVE ── */
     @media(max-width: 768px) {
-      nav { padding: 0 20px; }
-      .nav-links { display: none; }
+      nav { padding: 0 16px; gap: 8px; }
+      .nav-links { display: flex; gap: 16px; }
+      .nav-links a { font-size: 13px; }
+      .nav-cta { padding: 7px 12px; font-size: 13px; }
+      .nav-logo-icon { width: 28px; height: 28px; }
+      .nav-logo { font-size: 13px; }
       .hero { grid-template-columns: 1fr; padding: 100px 24px 48px; min-height: auto; gap: 48px; }
       .hero-text { padding-right: 0; }
       .hero-phone img { width: 260px; }
