@@ -137,7 +137,7 @@
       background: var(--bg-soft);
       border-radius: 24px;
       overflow: hidden;
-      padding: 28px 20px 0;
+      padding: 28px 20px 20px;
     }
     .screenshot-card-label {
       font-size: 13px; font-weight: 600;
@@ -150,9 +150,9 @@
       margin-bottom: 20px;
     }
     .screenshot-card img {
-      width: 100%; border-radius: 18px 18px 0 0;
+      width: 100%; border-radius: 28px;
       display: block;
-      box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
     }
 
     /* Emergency card — red tint */
@@ -176,11 +176,11 @@
 
     /* ── TWO COL ── */
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .two-col .screenshot-card img { border-radius: 14px 14px 0 0; }
+    .two-col .screenshot-card img { border-radius: 28px; }
 
     /* ── THREE COL ── */
     .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .three-col .screenshot-card img { border-radius: 14px 14px 0 0; }
+    .three-col .screenshot-card img { border-radius: 28px; }
 
     /* ── ABOUT ── */
     .about-section { border-top: 1px solid var(--border); }
