@@ -116,7 +116,7 @@
     }
 
     /* ── SECTION WRAPPER ── */
-    .section { padding: 96px 48px; }
+    .section { padding: 96px 48px; scroll-margin-top: 70px; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
 
     /* ── SHOWCASE ── */
@@ -248,6 +248,9 @@
     .cta-btn:hover { opacity: .92; transform: translateY(-2px); }
     .cta-btn svg { width: 18px; height: 18px; }
 
+    /* scroll offset for all anchor targets */
+    #features, #pricing, #about { scroll-margin-top: 70px; }
+
     /* ── FOOTER ── */
     footer {
       padding: 48px; border-top: 1px solid var(--border);
@@ -268,7 +271,9 @@
       .nav-cta { margin-left: auto; position: absolute; top: 12px; right: 20px; padding: 7px 14px; font-size: 13px; }
       .nav-links { width: 100%; display: flex; justify-content: center; gap: 32px; border-top: 1px solid var(--border); padding: 10px 0; }
       .nav-links a { font-size: 14px; }
-      .hero { padding-top: 120px; }
+      .section { scroll-margin-top: 110px; }
+      #features, #pricing, #about { scroll-margin-top: 110px; }
+      .hero { padding-top: 130px; }
       .hero { grid-template-columns: 1fr; padding: 100px 24px 48px; min-height: auto; gap: 48px; }
       .hero-text { padding-right: 0; }
       .hero-phone img { width: 260px; }
